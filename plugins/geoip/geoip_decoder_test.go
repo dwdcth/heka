@@ -1,3 +1,5 @@
+// +build geoip
+
 /***** BEGIN LICENSE BLOCK *****
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -16,13 +18,13 @@
 package geoip
 
 import (
-	"github.com/abh/geoip"
-	"heka/message"
-	. "heka/pipeline"
-	ts "heka/pipeline/testsupport"
-	"github.com/rafrombrc/gomock/gomock"
-	gs "github.com/rafrombrc/gospec/src/gospec"
-	"testing"
+    "github.com/abh/geoip"
+    "github.com/rafrombrc/gomock/gomock"
+    gs "github.com/rafrombrc/gospec/src/gospec"
+    "heka/message"
+    . "heka/pipeline"
+    ts "heka/pipeline/testsupport"
+    "testing"
 )
 
 func TestAllSpecs(t *testing.T) {

@@ -1,6 +1,6 @@
 
 # Heka
-forked from [mozilla-services](https://github.com/mozilla-services/heka)
+forked from [mozilla-services](https://heka)
 
 # 编译
 git clone --depth=1 https://github.com/dwdcth/heka.git

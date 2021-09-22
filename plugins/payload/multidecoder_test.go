@@ -21,19 +21,19 @@
 package payload
 
 import (
-	"errors"
-	"fmt"
-	"testing"
+    "errors"
+    "fmt"
+    "testing"
 
-	"github.com/BurntSushi/toml"
-	"github.com/gogo/protobuf/proto"
-	"heka/message"
-	. "heka/pipeline"
-	pipeline_ts "heka/pipeline/testsupport"
-	"heka/pipelinemock"
-	"github.com/rafrombrc/gomock/gomock"
-	"github.com/rafrombrc/gospec/src/gospec"
-	gs "github.com/rafrombrc/gospec/src/gospec"
+    "github.com/BurntSushi/toml"
+    "github.com/gogo/protobuf/proto"
+    "github.com/rafrombrc/gomock/gomock"
+    "github.com/rafrombrc/gospec/src/gospec"
+    gs "github.com/rafrombrc/gospec/src/gospec"
+    "heka/message"
+    . "heka/pipeline"
+    pipeline_ts "heka/pipeline/testsupport"
+    "heka/pipelinemock"
 )
 
 type MultiOutputDecoder struct {
@@ -371,7 +371,8 @@ func BenchmarkMultiDecodeProtobuf(b *testing.B) {
 	if err != nil {
 		b.Fatalf("Error decoding empty TOML: %s", err.Error())
 	}
-	maker, err := NewPluginMaker("ProtobufDecoder", pConfig, section)
+	maker, err := NewPluginMaker("ProtobufDecoder", pConfig, toml.Primitive{}) //todo
+	//maker, err := NewPluginMaker("ProtobufDecoder", pConfig, section) //todo
 	if err != nil {
 		b.Fatalf("Error decoding empty TOML: %s", err.Error())
 	}
