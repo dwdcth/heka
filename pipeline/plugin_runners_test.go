@@ -22,8 +22,8 @@ import (
 	"sync"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/message"
-	ts "github.com/dwdcth/heka/pipeline/testsupport"
+	"heka/message"
+	ts "heka/pipeline/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

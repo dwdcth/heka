@@ -16,8 +16,8 @@ package payload
 
 import (
 	"fmt"
-	. "github.com/dwdcth/heka/message"
-	. "github.com/dwdcth/heka/pipeline"
+	. "heka/message"
+	. "heka/pipeline"
 	"strconv"
 	"time"
 )

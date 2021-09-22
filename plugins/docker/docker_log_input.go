@@ -21,7 +21,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/dwdcth/heka/pipeline"
+	"heka/pipeline"
 )
 
 type DockerLogInputConfig struct {

@@ -30,9 +30,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dwdcth/heka/message"
-	. "github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins/tcp"
+	"heka/message"
+	. "heka/pipeline"
+	"heka/plugins/tcp"
 )
 
 type ESBatch struct {

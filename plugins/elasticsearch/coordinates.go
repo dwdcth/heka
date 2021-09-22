@@ -19,7 +19,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/cactus/gostrftime"
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 	"strconv"
 	"strings"
 	"time"

@@ -23,7 +23,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/dwdcth/heka/pipeline"
+	"heka/pipeline"
 )
 
 // Tracks the timestamp of the last time we logged

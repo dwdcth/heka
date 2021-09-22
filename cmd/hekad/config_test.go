@@ -16,8 +16,8 @@
 package main
 
 import (
-	"github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins"
+	"heka/pipeline"
+	"heka/plugins"
 	"testing"
 )
 

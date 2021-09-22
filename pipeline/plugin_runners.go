@@ -23,8 +23,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dwdcth/heka/client"
-	"github.com/dwdcth/heka/message"
+	"heka/client"
+	"heka/message"
 )
 
 var ErrUnknownPluginType = errors.New("Unable to assert this is an Output or Filter")

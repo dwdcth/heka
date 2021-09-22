@@ -42,9 +42,9 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/client"
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/plugins/tcp"
+	"heka/client"
+	"heka/message"
+	"heka/plugins/tcp"
 	"github.com/pborman/uuid"
 )
 

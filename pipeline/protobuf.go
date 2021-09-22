@@ -22,7 +22,7 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 )
 
 // Decoder for converting ProtocolBuffer data into Message objects.

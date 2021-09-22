@@ -15,12 +15,12 @@
 package irc
 
 import (
-	"crypto/tls"
-	"errors"
-	"fmt"
-	"github.com/dwdcth/heka/plugins/tcp"
-	"github.com/thoj/go-ircevent"
-	"time"
+    "crypto/tls"
+    "errors"
+    "fmt"
+    "github.com/thoj/go-ircevent"
+    "heka/plugins/tcp"
+    "time"
 )
 
 const (
@@ -73,7 +73,7 @@ type IrcConnection interface {
 	Connect(server string) error
 	Disconnect()
 	Reconnect() error
-	AddCallback(event string, callback func(event *irc.Event)) string
+	AddCallback(event string, callback func(event *irc.Event)) int
 	ClearCallback(event string) bool
 	RunCallbacks(event *irc.Event)
 	ErrorChan() chan error

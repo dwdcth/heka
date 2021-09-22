@@ -10,7 +10,7 @@ Binaries
 ========
 
 `hekad` `releases are available on the Github project releases page
-<https://github.com/dwdcth/heka/releases>`_.
+<https://heka/releases>`_.
 Binaries are available for Linux and OSX, with packages for Debian and
 RPM based distributions.
 
@@ -63,7 +63,7 @@ Build Instructions
 
     .. code-block:: bash
 
-        git clone https://github.com/dwdcth/heka
+        git clone https://heka
 
 2. Source (Unix-y) or run (Windows) the build script in the heka directory:
 
@@ -153,7 +153,7 @@ sub-packages to be initialized.
 
     .. code-block:: cmake
 
-        add_external_plugin(git https://github.com/dwdcth/heka-mozsvc-plugins 6fe574dbd32a21f5d5583608a9d2339925edd2a7)
+        add_external_plugin(git https://heka-mozsvc-plugins 6fe574dbd32a21f5d5583608a9d2339925edd2a7)
         add_external_plugin(git https://github.com/example/path <tag> util filepath)
         add_external_plugin(git https://github.com/bellycard/heka-sns-input :local)
         # The ':local' tag is a special case, it copies {heka root}/externals/{plugin_name} into the Go

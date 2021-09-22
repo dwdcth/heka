@@ -23,8 +23,8 @@ import (
 	"io"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/message"
-	ts "github.com/dwdcth/heka/pipeline/testsupport"
+	"heka/message"
+	ts "heka/pipeline/testsupport"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )
 

@@ -27,9 +27,9 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
-	. "github.com/dwdcth/heka/sandbox"
+	"heka/message"
+	"heka/pipeline"
+	. "heka/sandbox"
 )
 
 // Heka Filter plugin that listens for (signed) control messages and

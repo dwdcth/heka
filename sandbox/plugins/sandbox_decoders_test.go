@@ -5,11 +5,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
-	ts "github.com/dwdcth/heka/pipeline/testsupport"
-	pm "github.com/dwdcth/heka/pipelinemock"
-	"github.com/dwdcth/heka/sandbox"
+	"heka/message"
+	"heka/pipeline"
+	ts "heka/pipeline/testsupport"
+	pm "heka/pipelinemock"
+	"heka/sandbox"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

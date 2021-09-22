@@ -16,9 +16,9 @@ package plugins
 
 import (
 	"fmt"
-	"github.com/dwdcth/heka/pipeline"
+	"heka/pipeline"
 	"time"
-	//pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
+	//pipeline_ts "heka/pipeline/testsupport"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )
 

@@ -17,8 +17,8 @@ package plugins
 import (
 	"time"
 
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
+	"heka/message"
+	"heka/pipeline"
 	"github.com/pborman/uuid"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

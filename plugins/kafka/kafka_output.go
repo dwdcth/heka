@@ -26,9 +26,9 @@ import (
 	"time"
 
 	"github.com/Shopify/sarama"
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins/tcp"
+	"heka/message"
+	"heka/pipeline"
+	"heka/plugins/tcp"
 )
 
 type KafkaOutputConfig struct {

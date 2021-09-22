@@ -24,10 +24,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dwdcth/heka/message"
-	. "github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins/process"
-	"github.com/dwdcth/heka/plugins/tcp"
+	"heka/message"
+	. "heka/pipeline"
+	"heka/plugins/process"
+	"heka/plugins/tcp"
 )
 
 // NagiosOutput can be configured to use the http client to submit the passive

@@ -16,7 +16,7 @@
 package logstreamer
 
 import (
-	"github.com/dwdcth/heka/ringbuf"
+	"heka/ringbuf"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 	"os"
 	"path/filepath"

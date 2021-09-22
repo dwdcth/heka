@@ -29,8 +29,8 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/client"
-	"github.com/dwdcth/heka/message"
+	"heka/client"
+	"heka/message"
 )
 
 var QueueIsFull = errors.New("Queue is full")

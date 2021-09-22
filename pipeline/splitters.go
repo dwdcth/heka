@@ -26,7 +26,7 @@ import (
 	"hash"
 	"regexp"
 
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 )
 
 type NullSplitter struct {

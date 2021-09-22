@@ -27,8 +27,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/dwdcth/heka/message"
-	. "github.com/dwdcth/heka/pipeline"
+	"heka/message"
+	. "heka/pipeline"
 )
 
 type cmdConfig struct {

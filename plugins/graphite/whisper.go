@@ -23,8 +23,8 @@ import (
 	"strings"
 	"sync"
 
-	. "github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins"
+	. "heka/pipeline"
+	"heka/plugins"
 	"github.com/rafrombrc/whisper-go/whisper"
 )
 

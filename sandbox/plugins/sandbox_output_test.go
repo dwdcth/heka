@@ -20,10 +20,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/dwdcth/heka/pipeline"
-	ts "github.com/dwdcth/heka/pipeline/testsupport"
-	plugins_ts "github.com/dwdcth/heka/plugins/testsupport"
-	"github.com/dwdcth/heka/sandbox"
+	"heka/pipeline"
+	ts "heka/pipeline/testsupport"
+	plugins_ts "heka/plugins/testsupport"
+	"heka/sandbox"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

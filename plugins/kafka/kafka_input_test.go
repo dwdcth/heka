@@ -22,9 +22,9 @@ import (
 	"testing"
 
 	"github.com/Shopify/sarama"
-	. "github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/pipelinemock"
-	plugins_ts "github.com/dwdcth/heka/plugins/testsupport"
+	. "heka/pipeline"
+	"heka/pipelinemock"
+	plugins_ts "heka/plugins/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 )
 

@@ -7,7 +7,7 @@ Plugin Name: **PayloadXmlDecoder**
 
 This decoder plugin accepts XML blobs in the message payload and allows you to
 map parts of the XML into Field attributes of the pipeline pack message using
-XPath syntax using the `xmlpath <http://launchpad.net/xmlpath>`_ library.
+XPath syntax using the `xmlpath <http://gopkg.in/xmlpath.v1>`_ library.
 
 Config:
 
@@ -87,7 +87,7 @@ Example:
     Timestamp = "%Timestamp%"
 
 PayloadXmlDecoder's xpath_map config subsection supports XPath as
-implemented by the `xmlpath <http://launchpad.net/xmlpath>`_ library.
+implemented by the `xmlpath <http://gopkg.in/xmlpath.v1>`_ library.
 
     * All axes are supported ("child", "following-sibling", etc)
     * All abbreviated forms are supported (".", "//", etc)

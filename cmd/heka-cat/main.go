@@ -31,8 +31,8 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
+	"heka/message"
+	"heka/pipeline"
 )
 
 func makeSplitterRunner() (pipeline.SplitterRunner, error) {

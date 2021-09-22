@@ -102,9 +102,9 @@ func (conn *MockIrcConnection) Reconnect() error {
 }
 
 func (conn *MockIrcConnection) AddCallback(event string,
-	callback func(*irc.Event)) string {
+	callback func(*irc.Event)) int {
 	conn.callbacks[event] = callback
-	return ""
+	return 0
 }
 
 func (conn *MockIrcConnection) ClearCallback(event string) bool {

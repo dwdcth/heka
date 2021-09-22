@@ -30,8 +30,8 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/dwdcth/heka/client"
-	"github.com/dwdcth/heka/logstreamer"
+	"heka/client"
+	"heka/logstreamer"
 )
 
 // Logstreamer config struct

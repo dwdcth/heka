@@ -24,11 +24,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/dwdcth/heka/client"
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/sandbox"
-	"github.com/dwdcth/heka/sandbox/lua"
+	"heka/client"
+	"heka/message"
+	"heka/pipeline"
+	"heka/sandbox"
+	"heka/sandbox/lua"
 )
 
 type SandboxEncoder struct {

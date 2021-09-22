@@ -14,7 +14,7 @@
 
 package sandbox
 
-import "github.com/dwdcth/heka/pipeline"
+import "heka/pipeline"
 
 const (
 	STATUS_UNKNOWN    = 0

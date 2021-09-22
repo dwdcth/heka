@@ -21,8 +21,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
+	"heka/message"
+	"heka/pipeline"
 	"github.com/pborman/uuid"
 )
 

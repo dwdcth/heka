@@ -20,7 +20,7 @@ import (
 	"testing"
 
 	"github.com/gogo/protobuf/proto"
-	ts "github.com/dwdcth/heka/pipeline/testsupport"
+	ts "heka/pipeline/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 	"github.com/rafrombrc/gospec/src/gospec"
 	gs "github.com/rafrombrc/gospec/src/gospec"

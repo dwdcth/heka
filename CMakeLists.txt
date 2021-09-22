@@ -23,7 +23,7 @@ if (NOT DEFINED CMAKE_INSTALL_PREFIX)
     set(CMAKE_INSTALL_PREFIX ${CMAKE_PROJECT_NAME})
 endif()
 set(PROJECT_PATH "${CMAKE_BINARY_DIR}/heka")
-set(HEKA_PATH "${PROJECT_PATH}/src/github.com/dwdcth/heka")
+set(HEKA_PATH "${PROJECT_PATH}/src/heka")
 set(LUA_INCLUDE_PATH "${PROJECT_PATH}/include")
 set(LUA_LIB_PATH "${PROJECT_PATH}/lib")
 set(HEKA_EXE "${PROJECT_PATH}/bin/hekad${CMAKE_EXECUTABLE_SUFFIX}")
@@ -44,12 +44,12 @@ if (NOT INCLUDE_GEOIP)
 else()
     message(STATUS "GeoIP.h found. Enabling GeoIP plugin.")
     set(TAGS "${TAGS} geoip")
-    set(PLUGIN_LOADER ${PLUGIN_LOADER} "github.com/dwdcth/heka/plugins/geoip")
+    set(PLUGIN_LOADER ${PLUGIN_LOADER} "heka/plugins/geoip")
 endif()
 
 if (INCLUDE_DOCKER_PLUGINS)
     message(STATUS "Docker plugins enabled.")
-    set(PLUGIN_LOADER ${PLUGIN_LOADER} "github.com/dwdcth/heka/plugins/docker")
+    set(PLUGIN_LOADER ${PLUGIN_LOADER} "heka/plugins/docker")
 endif()
 
 option(BENCHMARK "Enable the benchmark tests" off)
@@ -167,7 +167,7 @@ WORKING_DIRECTORY "${HEKA_PATH}/message"
 add_dependencies(mocks message_matcher_parser)
 
 add_custom_target(hekad ALL
-${GO_EXECUTABLE} install ${LDFLAGS} -tags=${TAGS} github.com/dwdcth/heka/cmd/hekad
+${GO_EXECUTABLE} install ${LDFLAGS} -tags=${TAGS} heka/cmd/hekad
 DEPENDS mocks)
 
 if (INCLUDE_DOCUMENTATION)
@@ -202,41 +202,41 @@ endif()
 install(PROGRAMS "${HEKA_EXE}" DESTINATION bin)
 
 add_custom_target(flood ALL
-${GO_EXECUTABLE} install ${LDFLAGS} github.com/dwdcth/heka/cmd/heka-flood
+${GO_EXECUTABLE} install ${LDFLAGS} heka/cmd/heka-flood
 DEPENDS hekad
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 install(PROGRAMS "${FLOOD_EXE}" DESTINATION bin)
 
 add_custom_target(inject ALL
-${GO_EXECUTABLE} install ${LDFLAGS} github.com/dwdcth/heka/cmd/heka-inject
+${GO_EXECUTABLE} install ${LDFLAGS} heka/cmd/heka-inject
 DEPENDS hekad
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 install(PROGRAMS "${INJECT_EXE}" DESTINATION bin)
 
 add_custom_target(logstreamer ALL
-${GO_EXECUTABLE} install ${LDFLAGS} github.com/dwdcth/heka/cmd/heka-logstreamer
+${GO_EXECUTABLE} install ${LDFLAGS} heka/cmd/heka-logstreamer
 DEPENDS hekad
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 install(PROGRAMS "${LOGSTREAMER_EXE}" DESTINATION bin)
 
 add_custom_target(heka-cat ALL
-${GO_EXECUTABLE} install ${LDFLAGS} github.com/dwdcth/heka/cmd/heka-cat
+${GO_EXECUTABLE} install ${LDFLAGS} heka/cmd/heka-cat
 DEPENDS hekad
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 install(PROGRAMS "${HEKA_CAT_EXE}" DESTINATION bin)
 
 add_custom_target(sbmgr ALL
-${GO_EXECUTABLE} install ${LDFLAGS} github.com/dwdcth/heka/cmd/heka-sbmgr
+${GO_EXECUTABLE} install ${LDFLAGS} heka/cmd/heka-sbmgr
 DEPENDS hekad)
 
 install(PROGRAMS "${SBMGR_EXE}" DESTINATION bin)
 
 add_custom_target(sbmgrload ALL
-${GO_EXECUTABLE} install ${LDFLAGS} github.com/dwdcth/heka/cmd/heka-sbmgrload
+${GO_EXECUTABLE} install ${LDFLAGS} heka/cmd/heka-sbmgrload
 DEPENDS hekad)
 
 ## DEBIAN SPECIFIC THINGS HERE
@@ -260,38 +260,38 @@ endif()
 # MOVING INCLUSION OF CPACK DOWN HERE SO IT ACTUALLY GETS THE VARIABLES WE SET
 include(CPack)
 
-add_test(cmd/hekad ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/cmd/hekad)
-add_test(message ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/message)
-add_test(pipeline ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/pipeline)
-add_test(plugins ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins)
-add_test(plugins/amqp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/amqp)
-add_test(plugins/dasher ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/dasher)
-add_test(plugins/elasticsearch ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/elasticsearch)
-add_test(plugins/file ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/file)
+add_test(cmd/hekad ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/cmd/hekad)
+add_test(message ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/message)
+add_test(pipeline ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/pipeline)
+add_test(plugins ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins)
+add_test(plugins/amqp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/amqp)
+add_test(plugins/dasher ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/dasher)
+add_test(plugins/elasticsearch ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/elasticsearch)
+add_test(plugins/file ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/file)
 if (INCLUDE_GEOIP)
-    add_test(plugins/geoip  ${GO_EXECUTABLE} test ${LDFLAGS} -tags=${TAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/geoip)
+    add_test(plugins/geoip  ${GO_EXECUTABLE} test ${LDFLAGS} -tags=${TAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/geoip)
 endif()
-add_test(plugins/graphite ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/graphite)
-add_test(plugins/http ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/http)
-add_test(plugins/irc ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/irc)
-add_test(plugins/kafka ${GO_EXECUTABLE} test -timeout 15s  ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/kafka)
-add_test(plugins/logstreamer ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/logstreamer)
-add_test(plugins/nagios ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/nagios)
-add_test(plugins/payload ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/payload)
-add_test(plugins/process ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/process)
-add_test(plugins/smtp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/smtp)
-add_test(plugins/statsd ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/statsd)
-add_test(plugins/tcp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/tcp)
-add_test(plugins/udp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/plugins/udp)
-add_test(logstreamer ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/logstreamer)
-add_test(client ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/client)
+add_test(plugins/graphite ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/graphite)
+add_test(plugins/http ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/http)
+add_test(plugins/irc ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/irc)
+add_test(plugins/kafka ${GO_EXECUTABLE} test -timeout 15s  ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/kafka)
+add_test(plugins/logstreamer ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/logstreamer)
+add_test(plugins/nagios ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/nagios)
+add_test(plugins/payload ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/payload)
+add_test(plugins/process ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/process)
+add_test(plugins/smtp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/smtp)
+add_test(plugins/statsd ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/statsd)
+add_test(plugins/tcp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/tcp)
+add_test(plugins/udp ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/plugins/udp)
+add_test(logstreamer ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/logstreamer)
+add_test(client ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/client)
 if(INCLUDE_SANDBOX)
-    add_test(sandbox_move_modules cmake -E copy_directory ${CMAKE_BINARY_DIR}/heka/lib/luasandbox/modules ${CMAKE_BINARY_DIR}/heka/src/github.com/dwdcth/heka/sandbox/lua/modules)
-    add_test(sandbox ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/sandbox/lua)
-    add_test(sandbox_plugins ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka/sandbox/plugins)
+    add_test(sandbox_move_modules cmake -E copy_directory ${CMAKE_BINARY_DIR}/heka/lib/luasandbox/modules ${CMAKE_BINARY_DIR}/heka/src/heka/sandbox/lua/modules)
+    add_test(sandbox ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/sandbox/lua)
+    add_test(sandbox_plugins ${GO_EXECUTABLE} test ${LDFLAGS} ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka/sandbox/plugins)
 endif()
 if (INCLUDE_MOZSVC)
-    add_test(mozsvc ${GO_EXECUTABLE} test ${BENCHMARK_FLAG} ${COVERAGE_FLAG} github.com/dwdcth/heka-mozsvc-plugins)
+    add_test(mozsvc ${GO_EXECUTABLE} test ${BENCHMARK_FLAG} ${COVERAGE_FLAG} heka-mozsvc-plugins)
 endif()
 
 install(FILES "${HEKA_PATH}/cmd/heka-sbmgr/sbmgr.toml" "${HEKA_PATH}/cmd/heka-sbmgr/hekad.toml.sbmgr" DESTINATION "share/${CMAKE_PROJECT_NAME}/examples")

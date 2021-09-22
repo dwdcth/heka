@@ -15,7 +15,7 @@
 package plugins
 
 import (
-	. "github.com/dwdcth/heka/pipeline"
+	. "heka/pipeline"
 )
 
 type ScribbleDecoderConfig struct {

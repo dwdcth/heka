@@ -756,7 +756,8 @@ func (self *PipelineConfig) LoadConfig() error {
 }
 
 func subsFromSection(section toml.Primitive) []string {
-	secMap := section.(map[string]interface{})
+    var secMap = make(map[string]interface{})
+    toml.PrimitiveDecode(section,&secMap)
 	var subs []string
 	if _, ok := secMap["subs"]; ok {
 		subsUntyped, _ := secMap["subs"].([]interface{})

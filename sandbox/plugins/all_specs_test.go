@@ -20,7 +20,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 	"github.com/pborman/uuid"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

@@ -18,9 +18,9 @@ package statsd
 
 import (
 	"fmt"
-	. "github.com/dwdcth/heka/pipeline"
-	pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
-	"github.com/dwdcth/heka/pipelinemock"
+	. "heka/pipeline"
+	pipeline_ts "heka/pipeline/testsupport"
+	"heka/pipelinemock"
 	"github.com/rafrombrc/gomock/gomock"
 	"github.com/rafrombrc/gospec/src/gospec"
 	gs "github.com/rafrombrc/gospec/src/gospec"

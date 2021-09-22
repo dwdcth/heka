@@ -21,7 +21,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 	"github.com/pborman/uuid"
 )
 

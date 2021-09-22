@@ -21,7 +21,7 @@ import (
 	"log"
 	"os"
 
-	. "github.com/dwdcth/heka/pipeline"
+	. "heka/pipeline"
 )
 
 var logOut = log.New(os.Stdout, "", log.LstdFlags)

@@ -17,7 +17,7 @@ package payload
 
 import (
 	"fmt"
-	. "github.com/dwdcth/heka/pipeline"
+	. "heka/pipeline"
 	"regexp"
 	"time"
 )

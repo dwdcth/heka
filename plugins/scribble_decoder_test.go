@@ -15,8 +15,8 @@
 package plugins
 
 import (
-	. "github.com/dwdcth/heka/pipeline"
-	pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
+	. "heka/pipeline"
+	pipeline_ts "heka/pipeline/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

@@ -34,9 +34,9 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/sandbox"
+	"heka/message"
+	"heka/pipeline"
+	"heka/sandbox"
 	"github.com/pborman/uuid"
 )
 

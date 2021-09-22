@@ -23,10 +23,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/dwdcth/heka/pipeline"
-	pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
-	"github.com/dwdcth/heka/plugins"
-	plugins_ts "github.com/dwdcth/heka/plugins/testsupport"
+	"heka/pipeline"
+	pipeline_ts "heka/pipeline/testsupport"
+	"heka/plugins"
+	plugins_ts "heka/plugins/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

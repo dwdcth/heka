@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
-	ts "github.com/dwdcth/heka/pipeline/testsupport"
+	"heka/message"
+	"heka/pipeline"
+	ts "heka/pipeline/testsupport"
 	"github.com/pborman/uuid"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"

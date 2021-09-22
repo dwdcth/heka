@@ -25,8 +25,8 @@ import (
 	"time"
 
 	"github.com/cactus/gostrftime"
-	. "github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins"
+	. "heka/pipeline"
+	"heka/plugins"
 	"github.com/rafrombrc/go-notify"
 )
 

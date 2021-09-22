@@ -25,9 +25,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/dwdcth/heka/message"
-	. "github.com/dwdcth/heka/pipeline"
-	. "github.com/dwdcth/heka/plugins/tcp"
+	"heka/message"
+	. "heka/pipeline"
+	. "heka/plugins/tcp"
 )
 
 type HttpListenInput struct {

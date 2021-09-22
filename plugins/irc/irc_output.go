@@ -16,16 +16,16 @@
 package irc
 
 import (
-	"errors"
-	"fmt"
-	"strings"
-	"sync"
-	"sync/atomic"
-	"time"
+    "errors"
+    "fmt"
+    "strings"
+    "sync"
+    "sync/atomic"
+    "time"
 
-	"github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins/tcp"
-	"github.com/thoj/go-ircevent"
+    "github.com/thoj/go-ircevent"
+    "heka/pipeline"
+    "heka/plugins/tcp"
 )
 
 func init() {

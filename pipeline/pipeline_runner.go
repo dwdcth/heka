@@ -28,7 +28,7 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 	notify "github.com/rafrombrc/go-notify"
 )
 

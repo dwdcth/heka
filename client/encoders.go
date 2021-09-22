@@ -23,7 +23,7 @@ import (
 	"hash"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 )
 
 type Encoder interface {

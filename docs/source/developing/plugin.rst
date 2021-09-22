@@ -74,7 +74,7 @@ themselves from settings in hekad's config file.
 The minimal shared interface that a Heka plugin must implement in order to use
 the config system is (unsurprisingly) ``Plugin``, defined in
 `pipeline_runner.go
-<https://github.com/dwdcth/heka/blob/master/pipeline/pipeline_runner.go>`_::
+<https://heka/blob/master/pipeline/pipeline_runner.go>`_::
 
     type Plugin interface {
         Init(config interface{}) error
@@ -185,7 +185,7 @@ configuration data, into which the TOML configuration will be decoded.
 
 Plugins that wish to provide a custom configuration struct should implement
 the ``HasConfigStruct`` interface defined in the `config.go
-<https://github.com/dwdcth/heka/blob/master/pipeline/config.go>`_
+<https://heka/blob/master/pipeline/config.go>`_
 file::
 
     type HasConfigStruct interface {

@@ -24,11 +24,11 @@ import (
 	"testing"
 	"time"
 
-	ls "github.com/dwdcth/heka/logstreamer"
-	. "github.com/dwdcth/heka/pipeline"
-	pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
-	"github.com/dwdcth/heka/pipelinemock"
-	plugins_ts "github.com/dwdcth/heka/plugins/testsupport"
+	ls "heka/logstreamer"
+	. "heka/pipeline"
+	pipeline_ts "heka/pipeline/testsupport"
+	"heka/pipelinemock"
+	plugins_ts "heka/plugins/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

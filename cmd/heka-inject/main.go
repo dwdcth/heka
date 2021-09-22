@@ -28,8 +28,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/dwdcth/heka/client"
-	"github.com/dwdcth/heka/message"
+	"heka/client"
+	"heka/message"
 	"github.com/pborman/uuid"
 )
 

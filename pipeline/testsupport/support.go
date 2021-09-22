@@ -25,7 +25,7 @@ import (
 	"strings"
 	"time"
 
-	. "github.com/dwdcth/heka/message"
+	. "heka/message"
 	"github.com/pborman/uuid"
 	"github.com/rafrombrc/gospec/src/gospec"
 )

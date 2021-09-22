@@ -21,7 +21,7 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
-	"github.com/dwdcth/heka/message"
+	"heka/message"
 )
 
 type PluginMaker interface {
@@ -240,7 +240,8 @@ func (m *pluginMaker) OrigPrepConfig() (interface{}, error) {
 	// means that an error will be raised for any config options in the TOML
 	// that don't have corresponding attributes on the struct, delta the
 	// hekaParams that can be safely excluded.
-	err = toml.PrimitiveDecodeStrict(m.tomlSection, config, hekaParams)
+	//err = toml.PrimitiveDecodeStrict(m.tomlSection, config, hekaParams)
+	err = toml.PrimitiveDecode(m.tomlSection, config)
 	if err != nil {
 		matches := unknownOptionRegex.FindStringSubmatch(err.Error())
 		if len(matches) == 2 {

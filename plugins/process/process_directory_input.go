@@ -24,7 +24,7 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
-	. "github.com/dwdcth/heka/pipeline"
+	. "heka/pipeline"
 )
 
 type ProcessEntry struct {

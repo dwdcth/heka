@@ -27,10 +27,10 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	"github.com/dwdcth/heka/client"
-	"github.com/dwdcth/heka/message"
-	"github.com/dwdcth/heka/pipeline"
-	"github.com/dwdcth/heka/plugins/tcp"
+	"heka/client"
+	"heka/message"
+	"heka/pipeline"
+	"heka/plugins/tcp"
 	"github.com/pborman/uuid"
 )
 

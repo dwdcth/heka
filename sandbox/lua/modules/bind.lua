@@ -9,7 +9,7 @@ the ISC Berkeley Internet Name Daemon DNS server:
 
 https://www.isc.org/downloads/bind/
 
-Adapted from: https://github.com/dwdcth/heka/wiki/How-to-convert-a-PayloadRegex-MultiDecoder-to-a-SandboxDecoder-using-an-LPeg-Grammar
+Adapted from: https://heka/wiki/How-to-convert-a-PayloadRegex-MultiDecoder-to-a-SandboxDecoder-using-an-LPeg-Grammar
 
 Built with the help of: http://lpeg.trink.com/
 

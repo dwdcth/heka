@@ -30,8 +30,8 @@ The following resources are available to those who would like to ask
 questions, report problems, or learn more:
 
 * Mailing List: https://mail.mozilla.org/listinfo/heka
-* Issue Tracker: https://github.com/dwdcth/heka/issues
-* Github Project: https://github.com/dwdcth/heka/
+* Issue Tracker: https://heka/issues
+* Github Project: https://heka/
 * IRC: #heka channel on irc.mozilla.org
 
 Heka is a heavily plugin based system. Common operations such as adding data
