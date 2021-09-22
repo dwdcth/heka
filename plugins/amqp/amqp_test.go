@@ -16,21 +16,21 @@
 package amqp
 
 import (
-	"sync"
-	"testing"
-	"time"
+    "sync"
+    "testing"
+    "time"
 
-	"heka/client"
-	"heka/message"
-	. "heka/pipeline"
-	pipeline_ts "heka/pipeline/testsupport"
-	. "heka/pipelinemock"
-	"heka/plugins"
-	plugins_ts "heka/plugins/testsupport"
-	"github.com/pborman/uuid"
-	"github.com/rafrombrc/gomock/gomock"
-	gs "github.com/rafrombrc/gospec/src/gospec"
-	"github.com/streadway/amqp"
+    "github.com/pborman/uuid"
+    "github.com/rafrombrc/gomock/gomock"
+    gs "github.com/rafrombrc/gospec/src/gospec"
+    "github.com/streadway/amqp"
+    "heka/client"
+    "heka/message"
+    . "heka/pipeline"
+    pipeline_ts "heka/pipeline/testsupport"
+    . "heka/pipelinemock"
+    "heka/plugins"
+    plugins_ts "heka/plugins/testsupport"
 )
 
 func TestAllSpecs(t *testing.T) {
@@ -101,7 +101,7 @@ func AMQPPluginSpec(c gs.Context) {
 			// Create a channel to send data to the input. Drop a message on
 			// there and close the channel.
 			streamChan := make(chan amqp.Delivery, 1)
-			ack := plugins_ts.NewMockAcknowledger(ctrl)
+			ack := NewMockAcknowledger(ctrl)
 			ack.EXPECT().Ack(gomock.Any(), false)
 			streamChan <- amqp.Delivery{
 				ContentType:  "text/plain",
@@ -154,7 +154,7 @@ func AMQPPluginSpec(c gs.Context) {
 			msgBody := make([]byte, 0, 500)
 			_ = encoder.EncodeMessageStream(msg, &msgBody)
 
-			ack := plugins_ts.NewMockAcknowledger(ctrl)
+			ack := NewMockAcknowledger(ctrl)
 			ack.EXPECT().Ack(gomock.Any(), false)
 
 			streamChan <- amqp.Delivery{
