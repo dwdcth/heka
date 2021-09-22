@@ -16,8 +16,8 @@
 package main
 
 import (
-	"github.com/mozilla-services/heka/pipeline"
-	"github.com/mozilla-services/heka/plugins"
+	"github.com/dwdcth/heka/pipeline"
+	"github.com/dwdcth/heka/plugins"
 	"testing"
 )
 

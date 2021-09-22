@@ -9,7 +9,7 @@ the ISC Berkeley Internet Name Daemon DNS server:
 
 https://www.isc.org/downloads/bind/
 
-Adapted from: https://github.com/mozilla-services/heka/wiki/How-to-convert-a-PayloadRegex-MultiDecoder-to-a-SandboxDecoder-using-an-LPeg-Grammar
+Adapted from: https://github.com/dwdcth/heka/wiki/How-to-convert-a-PayloadRegex-MultiDecoder-to-a-SandboxDecoder-using-an-LPeg-Grammar
 
 Built with the help of: http://lpeg.trink.com/
 
@@ -59,7 +59,7 @@ local colon_literal = l.P":"
 -- 'queries'
 local queries_literal = l.P"queries:"
 -- '#'
-local pound_literal = l.P"#" 
+local pound_literal = l.P"#"
 -- 'info'
 local info_literal = l.P"info:"
 -- 'client'
@@ -70,7 +70,7 @@ local open_paren_literal = l.P"("
 local close_paren_literal = l.P")"
 -- 'query'
 local query_literal = l.P"query:"
--- 'IN' literal string; 
+-- 'IN' literal string;
 local in_literal = l.P"IN"
 -- '+' literal character; + indicates that recursion was requested.
 local plus_literal = l.P"+"
@@ -110,7 +110,7 @@ local x4            = l.xdigit * l.xdigit * l.xdigit * l.xdigit
 local client_ephemeral_port = l.digit^-5
 local client_ip = l.Cg(l.Ct(l.Cg(ip.v4, "value") * l.Cg(l.Cc"ipv4", "representation")), "ClientIP") * pound_literal * l.Cg(client_ephemeral_port, "ClientEphemeralPort")
 
---The ends of query logs have the IP address the DNS server used to respond to the query with. The LPEG capture group is just like 
+--The ends of query logs have the IP address the DNS server used to respond to the query with. The LPEG capture group is just like
 -- the client IP, but encased in ( ) and without the # literal at the front: (10.0.1.71)
 local server_responding_ip = l.P"(" * l.Cg(l.Ct(l.Cg(ip.v4, "value") * l.Cg(l.Cc"ipv4", "representation")), "ServerRespondingIP") * l.P")"
 
@@ -125,8 +125,8 @@ matches that gets built.
 Source: https://en.wikipedia.org/wiki/List_of_DNS_record_types
 
 
-The patterns for A and AAAA records are at the bottom because the whole listing of 
-possible record types inside of the l.Cg() group is order-sensitive. 
+The patterns for A and AAAA records are at the bottom because the whole listing of
+possible record types inside of the l.Cg() group is order-sensitive.
 
 Putting the pattern for "A" at the top would mean that "A" would match, but "AXFR",
 for instance, would not. The "A" in "AXFR" match, but LPEG would barf on the "XFR",
@@ -192,7 +192,7 @@ dns_record_class = l.Cg(
     , "RecordClass")
 
 --[[Query flag patterns
-Sources on what the query flags mean: 
+Sources on what the query flags mean:
 
 * https://deepthought.isc.org/article/AA-00434/0/What-do-EDC-and-other-letters-I-see-in-my-query-log-mean.html
 * http://jpmens.net/2011/02/22/bind-querylog-know-your-flags/
@@ -211,33 +211,33 @@ local t = {
 }
 
 --Create a capture group that uses the table above to match any one or more of '+-EDCST'
---that are present and add them to a new table called QueryFlags: 
+--that are present and add them to a new table called QueryFlags:
 query_flags = l.Cg( l.Ct((l.S"+-EDCST" / t)^1), "QueryFlags" )
 
 --[[Hostname and domain name patterns
 
-Hostnames and domain names are broken up into fragments that are called 
+Hostnames and domain names are broken up into fragments that are called
 "labels", which are the parts between the dots.
 
 Source: https://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_host_names
 
-For instance, webserver.company.com has the labels "webserver", "company" and 
+For instance, webserver.company.com has the labels "webserver", "company" and
 "com"
 
-The pattern below uses the upper, lower and digit shortcuts from the main LPEG 
+The pattern below uses the upper, lower and digit shortcuts from the main LPEG
 library and combines them with the hyphen (-) character to match anything that's
 part of a valid hostname label. The ^1 means match one or more instances of it.
 --]]
 local hostname_fragment = (l.upper + l.lower + l.digit +  "-" + "_")^1
 
---The pattern below matches one or more hostname_fragments, followed by a . 
+--The pattern below matches one or more hostname_fragments, followed by a .
 --and followed by one more hostname_fragment, indicating the end of a complete
 --hostname. The open and close parens and colon are to match the decorations
---BIND puts around the name: 
+--BIND puts around the name:
 -- (webserver.company.com):
 local enclosed_query = "(" * l.Cg((hostname_fragment * ".")^1 * hostname_fragment, "FullQuery") * "):"
 
---The ^-1 means match at most 1 instance of the pattern. We want this so that we 
+--The ^-1 means match at most 1 instance of the pattern. We want this so that we
 --can match the first part of a hostname and leave the rest for the l.Cg((hostname_fragment...
 --capture group to match into the QueryDomain table entry.
 --In webserver.company.com, `(hostname_fragment * ".")^-1` matches webserver.

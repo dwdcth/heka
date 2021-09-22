@@ -17,7 +17,7 @@ package payload
 import (
 	"fmt"
 	"github.com/crankycoder/xmlpath"
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 	"strings"
 	"time"
 )

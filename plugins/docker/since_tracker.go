@@ -23,7 +23,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mozilla-services/heka/pipeline"
+	"github.com/dwdcth/heka/pipeline"
 )
 
 // Tracks the timestamp of the last time we logged

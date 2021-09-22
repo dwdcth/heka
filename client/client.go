@@ -21,7 +21,7 @@ Client package to talk to heka from Go.
 package client
 
 import (
-	"github.com/mozilla-services/heka/message"
+	"github.com/dwdcth/heka/message"
 	"log"
 	"os"
 )

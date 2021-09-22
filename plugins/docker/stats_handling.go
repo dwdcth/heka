@@ -38,7 +38,7 @@ import (
 	"time"
 
 	"github.com/fsouza/go-dockerclient"
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 )
 
 type DockerStat struct {

@@ -14,8 +14,8 @@ macro(add_internal_mock package destination mocked_object source)
     COMMAND ${MOCKGEN_EXECUTABLE}
     -package=${_package_short}
     -destination="${_path}"
-    -self_package=github.com/mozilla-services/heka/${package}
-    github.com/mozilla-services/heka/${package}
+    -self_package=github.com/dwdcth/heka/${package}
+    github.com/dwdcth/heka/${package}
     ${mocked_object}
     DEPENDS "${CMAKE_SOURCE_DIR}/${package}/${source}"
     WORKING_DIRECTORY ${HEKA_PATH}
@@ -52,15 +52,15 @@ add_internal_mock(pipeline mock_stataccumulator_test.go     StatAccumulator     
 add_internal_mock(pipeline mock_deliverer_test.go           Deliverer           plugin_runners.go)
 add_internal_mock(pipeline mock_splitterrunner_test.go      SplitterRunner      splitter_runner.go)
 
-add_external_mock(pipelinemock mock_pluginhelper.go github.com/mozilla-services/heka/pipeline   PluginHelper)
-add_external_mock(pipelinemock mock_filterrunner.go github.com/mozilla-services/heka/pipeline   FilterRunner)
-add_external_mock(pipelinemock mock_decoderrunner.go github.com/mozilla-services/heka/pipeline  DecoderRunner)
-add_external_mock(pipelinemock mock_outputrunner.go github.com/mozilla-services/heka/pipeline   OutputRunner)
-add_external_mock(pipelinemock mock_inputrunner.go github.com/mozilla-services/heka/pipeline    InputRunner)
-add_external_mock(pipelinemock mock_decoder.go github.com/mozilla-services/heka/pipeline        Decoder)
-add_external_mock(pipelinemock mock_stataccumulator.go github.com/mozilla-services/heka/pipeline StatAccumulator)
-add_external_mock(pipelinemock mock_deliverer.go github.com/mozilla-services/heka/pipeline Deliverer)
-add_external_mock(pipelinemock mock_splitterrunner.go github.com/mozilla-services/heka/pipeline SplitterRunner)
+add_external_mock(pipelinemock mock_pluginhelper.go github.com/dwdcth/heka/pipeline   PluginHelper)
+add_external_mock(pipelinemock mock_filterrunner.go github.com/dwdcth/heka/pipeline   FilterRunner)
+add_external_mock(pipelinemock mock_decoderrunner.go github.com/dwdcth/heka/pipeline  DecoderRunner)
+add_external_mock(pipelinemock mock_outputrunner.go github.com/dwdcth/heka/pipeline   OutputRunner)
+add_external_mock(pipelinemock mock_inputrunner.go github.com/dwdcth/heka/pipeline    InputRunner)
+add_external_mock(pipelinemock mock_decoder.go github.com/dwdcth/heka/pipeline        Decoder)
+add_external_mock(pipelinemock mock_stataccumulator.go github.com/dwdcth/heka/pipeline StatAccumulator)
+add_external_mock(pipelinemock mock_deliverer.go github.com/dwdcth/heka/pipeline Deliverer)
+add_external_mock(pipelinemock mock_splitterrunner.go github.com/dwdcth/heka/pipeline SplitterRunner)
 
 add_external_mock(pipeline/testsupport mock_net_conn.go          net                         Conn)
 add_external_mock(pipeline/testsupport mock_net_listener.go      net                         Listener)

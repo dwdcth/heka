@@ -17,7 +17,7 @@ package payload
 
 import (
 	"fmt"
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 	"regexp"
 	"time"
 )

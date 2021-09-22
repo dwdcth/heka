@@ -27,11 +27,11 @@ import (
 	"reflect"
 	"strings"
 
-	. "github.com/mozilla-services/heka/pipeline"
-	pipeline_ts "github.com/mozilla-services/heka/pipeline/testsupport"
-	"github.com/mozilla-services/heka/pipelinemock"
-	. "github.com/mozilla-services/heka/plugins/tcp"
-	plugins_ts "github.com/mozilla-services/heka/plugins/testsupport"
+	. "github.com/dwdcth/heka/pipeline"
+	pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
+	"github.com/dwdcth/heka/pipelinemock"
+	. "github.com/dwdcth/heka/plugins/tcp"
+	plugins_ts "github.com/dwdcth/heka/plugins/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

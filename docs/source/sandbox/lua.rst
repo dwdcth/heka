@@ -218,7 +218,7 @@ Heka specific functions that are exposed to the Lua sandbox
         * name={object} e.g., foo={value=1, representation="s"}; foo={value={1010, 2200, 1567}, value_type=2, representation="ms"}
 
             * value (required) may be a single value or an array of values
-            * value_type (optional) `value_type enum <https://github.com/mozilla-services/heka/blob/dev/message/message.proto#L23>`_.
+            * value_type (optional) `value_type enum <https://github.com/dwdcth/heka/blob/dev/message/message.proto#L23>`_.
               This is most useful for specifying that numbers should be treated as integers as opposed defaulting to doubles.
             * representation (optional) metadata for display and unit management
 

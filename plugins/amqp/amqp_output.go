@@ -23,8 +23,8 @@ import (
 	"sync"
 	"time"
 
-	. "github.com/mozilla-services/heka/pipeline"
-	"github.com/mozilla-services/heka/plugins/tcp"
+	. "github.com/dwdcth/heka/pipeline"
+	"github.com/dwdcth/heka/plugins/tcp"
 	"github.com/streadway/amqp"
 )
 

@@ -40,11 +40,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/bbangert/toml"
+	"github.com/BurntSushi/toml"
 	"github.com/gogo/protobuf/proto"
-	"github.com/mozilla-services/heka/client"
-	"github.com/mozilla-services/heka/message"
-	"github.com/mozilla-services/heka/plugins/tcp"
+	"github.com/dwdcth/heka/client"
+	"github.com/dwdcth/heka/message"
+	"github.com/dwdcth/heka/plugins/tcp"
 	"github.com/pborman/uuid"
 )
 

@@ -22,8 +22,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/abh/geoip"
-	"github.com/mozilla-services/heka/message"
-	. "github.com/mozilla-services/heka/pipeline"
+	"github.com/dwdcth/heka/message"
+	. "github.com/dwdcth/heka/pipeline"
 	"strconv"
 )
 

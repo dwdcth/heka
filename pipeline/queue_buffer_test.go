@@ -21,11 +21,11 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/bbangert/toml"
+	"github.com/BurntSushi/toml"
 	"github.com/gogo/protobuf/proto"
-	"github.com/mozilla-services/heka/client"
-	"github.com/mozilla-services/heka/message"
-	ts "github.com/mozilla-services/heka/pipeline/testsupport"
+	"github.com/dwdcth/heka/client"
+	"github.com/dwdcth/heka/message"
+	ts "github.com/dwdcth/heka/pipeline/testsupport"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )

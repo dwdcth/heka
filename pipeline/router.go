@@ -25,7 +25,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/mozilla-services/heka/message"
+	"github.com/dwdcth/heka/message"
 )
 
 // Public interface exposed by the Heka message router. The message router

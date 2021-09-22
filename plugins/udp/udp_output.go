@@ -20,7 +20,7 @@ import (
 	"net"
 	"runtime"
 
-	"github.com/mozilla-services/heka/pipeline"
+	"github.com/dwdcth/heka/pipeline"
 )
 
 // This is our plugin struct.

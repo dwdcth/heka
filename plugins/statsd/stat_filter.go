@@ -21,8 +21,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mozilla-services/heka/message"
-	. "github.com/mozilla-services/heka/pipeline"
+	"github.com/dwdcth/heka/message"
+	. "github.com/dwdcth/heka/pipeline"
 )
 
 // Simple struct representing a single statsd-style metric value.

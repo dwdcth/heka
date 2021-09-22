@@ -2,7 +2,7 @@
   "name": "Heka Dashboard",
   "description": "The Heka Dashboard monitors health and sandboxes.",
   "version": "0.4",
-  "url": "https://github.com/mozilla-services/heka",
+  "url": "https://github.com/dwdcth/heka",
   "options": {
     "outdir": "docs",
     "paths": "javascript",

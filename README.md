@@ -24,6 +24,6 @@ WARNING: YOU MUST *SOURCE* THE BUILD SCRIPT (i.e. `source build.sh`) TO
          
 Resources:
 * Heka project docs: https://hekad.readthedocs.io/
-* GoDoc package docs: http://godoc.org/github.com/mozilla-services/heka
+* GoDoc package docs: http://godoc.org/github.com/dwdcth/heka
 * Mailing list: https://mail.mozilla.org/listinfo/heka
 * IRC: #heka on irc.mozilla.org

@@ -26,7 +26,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/mozilla-services/heka/ringbuf"
+	"github.com/dwdcth/heka/ringbuf"
 )
 
 // A location in a logstream indicating the farthest that has been read

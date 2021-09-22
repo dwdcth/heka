@@ -15,9 +15,9 @@
 package testsupport
 
 import (
-	"github.com/mozilla-services/heka/message"
-	. "github.com/mozilla-services/heka/pipeline"
-	"github.com/mozilla-services/heka/pipelinemock"
+	"github.com/dwdcth/heka/message"
+	. "github.com/dwdcth/heka/pipeline"
+	"github.com/dwdcth/heka/pipelinemock"
 	"github.com/rafrombrc/gomock/gomock"
 )
 

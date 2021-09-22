@@ -29,9 +29,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bbangert/toml"
-	"github.com/mozilla-services/heka/client"
-	"github.com/mozilla-services/heka/logstreamer"
+	"github.com/BurntSushi/toml"
+	"github.com/dwdcth/heka/client"
+	"github.com/dwdcth/heka/logstreamer"
 )
 
 // Logstreamer config struct

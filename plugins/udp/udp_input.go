@@ -23,7 +23,7 @@ import (
 	"strconv"
 	"strings"
 
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 )
 
 // Input plugin implementation that listens for Heka protocol messages on a

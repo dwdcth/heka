@@ -16,11 +16,11 @@ package plugins
 
 import (
 	"fmt"
-	. "github.com/mozilla-services/heka/pipeline"
-	pipeline_ts "github.com/mozilla-services/heka/pipeline/testsupport"
-	"github.com/mozilla-services/heka/pipelinemock"
-	plugins_ts "github.com/mozilla-services/heka/plugins/testsupport"
-	"github.com/mozilla-services/heka/sandbox"
+	. "github.com/dwdcth/heka/pipeline"
+	pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
+	"github.com/dwdcth/heka/pipelinemock"
+	plugins_ts "github.com/dwdcth/heka/plugins/testsupport"
+	"github.com/dwdcth/heka/sandbox"
 	"github.com/rafrombrc/gomock/gomock"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 	"runtime"

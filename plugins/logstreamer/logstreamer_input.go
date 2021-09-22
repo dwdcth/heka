@@ -24,9 +24,9 @@ import (
 	"sync"
 	"time"
 
-	ls "github.com/mozilla-services/heka/logstreamer"
-	"github.com/mozilla-services/heka/message"
-	p "github.com/mozilla-services/heka/pipeline"
+	ls "github.com/dwdcth/heka/logstreamer"
+	"github.com/dwdcth/heka/message"
+	p "github.com/dwdcth/heka/pipeline"
 )
 
 type LogstreamerInputConfig struct {

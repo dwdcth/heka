@@ -30,7 +30,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bbangert/toml"
+	"github.com/BurntSushi/toml"
 	"github.com/pborman/uuid"
 )
 

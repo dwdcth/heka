@@ -17,7 +17,7 @@ package examples
 import (
 	"errors"
 	"fmt"
-	"github.com/mozilla-services/heka/pipeline"
+	"github.com/dwdcth/heka/pipeline"
 )
 
 type HostFilter struct {

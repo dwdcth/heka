@@ -25,8 +25,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/mozilla-services/heka/message"
-	. "github.com/mozilla-services/heka/pipeline"
+	"github.com/dwdcth/heka/message"
+	. "github.com/dwdcth/heka/pipeline"
 )
 
 // Output plugin that sends messages via TCP using the Heka protocol.

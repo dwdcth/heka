@@ -23,7 +23,7 @@ import (
 	"strconv"
 	"strings"
 
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 )
 
 // Output plugin that sends statmetric messages via TCP

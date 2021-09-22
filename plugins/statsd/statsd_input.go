@@ -18,7 +18,7 @@ package statsd
 import (
 	"bytes"
 	"fmt"
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 	"math"
 	"net"
 	"strconv"

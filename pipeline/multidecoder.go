@@ -19,7 +19,7 @@ package pipeline
 import (
 	"errors"
 	"fmt"
-	"github.com/mozilla-services/heka/message"
+	"github.com/dwdcth/heka/message"
 	"math/rand"
 	"sort"
 	"sync"

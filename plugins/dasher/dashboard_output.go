@@ -27,9 +27,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mozilla-services/heka/message"
-	. "github.com/mozilla-services/heka/pipeline"
-	httpPlugin "github.com/mozilla-services/heka/plugins/http"
+	"github.com/dwdcth/heka/message"
+	. "github.com/dwdcth/heka/pipeline"
+	httpPlugin "github.com/dwdcth/heka/plugins/http"
 )
 
 type DashboardOutputConfig struct {

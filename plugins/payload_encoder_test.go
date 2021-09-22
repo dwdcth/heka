@@ -16,9 +16,9 @@ package plugins
 
 import (
 	"fmt"
-	"github.com/mozilla-services/heka/pipeline"
+	"github.com/dwdcth/heka/pipeline"
 	"time"
-	//pipeline_ts "github.com/mozilla-services/heka/pipeline/testsupport"
+	//pipeline_ts "github.com/dwdcth/heka/pipeline/testsupport"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )
 

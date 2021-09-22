@@ -28,7 +28,7 @@ import(
 	"strings"
 	"time"
 	"path/filepath"
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 	"github.com/fsouza/go-dockerclient"
 )
 

@@ -23,8 +23,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/bbangert/toml"
-	. "github.com/mozilla-services/heka/pipeline"
+	"github.com/BurntSushi/toml"
+	. "github.com/dwdcth/heka/pipeline"
 )
 
 type ProcessEntry struct {

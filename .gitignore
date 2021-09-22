@@ -8,3 +8,16 @@ var/
 *.sw?
 externals
 *~
+*.exe
+.idea/
+*.log
+*/node_modules/
+*.a
+*.so
+*.out
+*.wasm
+*/_obj/
+*.db
+*/test.db/
+*/build/
+*/dist/

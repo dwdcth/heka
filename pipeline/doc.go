@@ -26,7 +26,7 @@ For more information about Heka please see the following resources:
 
 	* Heka project documentation: https://heka-docs.readthedocs.io/
 	* `hekad` daemon documenation: https://hekad.readthedocs.io/
-	* `hekad` github project: https://github.com/mozilla-services/heka
+	* `hekad` github project: https://github.com/dwdcth/heka
 
 */
 package pipeline

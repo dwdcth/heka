@@ -20,8 +20,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/bbangert/toml"
-	"github.com/mozilla-services/heka/message"
+	"github.com/BurntSushi/toml"
+	"github.com/dwdcth/heka/message"
 )
 
 type PluginMaker interface {

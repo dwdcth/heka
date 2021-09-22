@@ -26,10 +26,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/bbangert/toml"
-	"github.com/mozilla-services/heka/message"
-	"github.com/mozilla-services/heka/pipeline"
-	. "github.com/mozilla-services/heka/sandbox"
+	"github.com/BurntSushi/toml"
+	"github.com/dwdcth/heka/message"
+	"github.com/dwdcth/heka/pipeline"
+	. "github.com/dwdcth/heka/sandbox"
 )
 
 // Heka Filter plugin that listens for (signed) control messages and

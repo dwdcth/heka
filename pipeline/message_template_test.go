@@ -15,7 +15,7 @@
 package pipeline
 
 import (
-	ts "github.com/mozilla-services/heka/pipeline/testsupport"
+	ts "github.com/dwdcth/heka/pipeline/testsupport"
 	gs "github.com/rafrombrc/gospec/src/gospec"
 )
 

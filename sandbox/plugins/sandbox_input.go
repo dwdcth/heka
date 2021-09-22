@@ -25,10 +25,10 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/mozilla-services/heka/message"
-	"github.com/mozilla-services/heka/pipeline"
-	. "github.com/mozilla-services/heka/sandbox"
-	"github.com/mozilla-services/heka/sandbox/lua"
+	"github.com/dwdcth/heka/message"
+	"github.com/dwdcth/heka/pipeline"
+	. "github.com/dwdcth/heka/sandbox"
+	"github.com/dwdcth/heka/sandbox/lua"
 )
 
 // Heka Input plugin that acts as a wrapper for sandboxed input scripts.

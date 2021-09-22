@@ -26,11 +26,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/bbangert/toml"
-	"github.com/mozilla-services/heka/client"
-	"github.com/mozilla-services/heka/message"
-	"github.com/mozilla-services/heka/pipeline"
-	"github.com/mozilla-services/heka/plugins/tcp"
+	"github.com/BurntSushi/toml"
+	"github.com/dwdcth/heka/client"
+	"github.com/dwdcth/heka/message"
+	"github.com/dwdcth/heka/pipeline"
+	"github.com/dwdcth/heka/plugins/tcp"
 	"github.com/pborman/uuid"
 )
 

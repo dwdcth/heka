@@ -16,7 +16,7 @@ package client
 
 import (
 	"bytes"
-	"github.com/mozilla-services/heka/message"
+	"github.com/dwdcth/heka/message"
 	"strings"
 	"testing"
 )

@@ -26,7 +26,7 @@ import (
 	"strings"
 	"time"
 
-	. "github.com/mozilla-services/heka/pipeline"
+	. "github.com/dwdcth/heka/pipeline"
 )
 
 const BASE64_ENCODING_LINE_LENGTH = 76

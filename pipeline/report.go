@@ -22,7 +22,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"github.com/mozilla-services/heka/message"
+	"github.com/dwdcth/heka/message"
 )
 
 // Interface for Heka plugins that will provide reporting data. Plugins can
