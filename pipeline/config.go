@@ -553,6 +553,7 @@ type PluginGlobals struct {
 type CommonConfig struct {
 	Typ string `toml:"type"` //插件类型，参见上面的 PluginTypeRegex 如果 type为空， 则 这个节的名字就是 type
 }
+
 // 通用输入插件
 type CommonInputConfig struct {
 	Ticker             uint `toml:"ticker_interval"`
@@ -631,12 +632,12 @@ func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 		configFile ConfigFile
 		err        error
 	)
-    // 更新配置文件中，自定义变量（环境变量）
+	// 更新配置文件中，自定义变量（环境变量）
 	contents, err := ReplaceEnvsFile(filename)
 	if err != nil {
 		return err
 	}
-    // TOML 解析成 configFile
+	// TOML 解析成 configFile
 	if _, err = toml.Decode(contents, &configFile); err != nil {
 		return fmt.Errorf("Error decoding config file: %s", err)
 	}
@@ -648,7 +649,7 @@ func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 	if self.defaultConfigs == nil {
 		self.defaultConfigs = makeDefaultConfigs()
 	}
-    // 加载插件配置文件， 这里面做了插件注册的检查
+	// 加载插件配置文件， 这里面做了插件注册的检查
 	// Load all the plugin makers and file them by category.
 	for name, conf := range configFile {
 		if name == HEKA_DAEMON {
@@ -658,13 +659,13 @@ func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 			self.defaultConfigs[name] = true
 		}
 		LogInfo.Printf("Pre-loading: [%s]\n", name)
-		maker, err := NewPluginMaker(name, self, conf)
+		maker, err := NewPluginMaker(name, self, conf) // 初始化插件
 		if err != nil {
 			self.log(err.Error())
 			self.errcnt++
 			continue
 		}
-        // 获取插件的类型，不同类型特殊处理
+		// 获取插件的类型，不同类型特殊处理
 		if maker.Type() == "MultiDecoder" {
 			// Special case MultiDecoders so we can make sure they get
 			// registered *after* all possible subdecoders.
@@ -683,6 +684,7 @@ func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 // and initializing all of the plugin config that has been prepped from calls
 // to PreloadFromConfigFile. This method should be called only once, after
 // PreloadFromConfigFile has been called as many times as needed.
+// 插件依赖和排序
 func (self *PipelineConfig) LoadConfig() error {
 	// Make sure our default plugins are registered.
 	for name, registered := range self.defaultConfigs {
@@ -736,7 +738,7 @@ func (self *PipelineConfig) LoadConfig() error {
 			if category == "Encoder" {
 				continue
 			}
-			runner, err := maker.MakeRunner("")
+			runner, err := maker.MakeRunner("") // todo 这里才是运行插件
 			if err != nil {
 				// Might be a duplicate error.
 				seen := false
@@ -773,8 +775,8 @@ func (self *PipelineConfig) LoadConfig() error {
 }
 
 func subsFromSection(section toml.Primitive) []string {
-    var secMap = make(map[string]interface{})
-    toml.PrimitiveDecode(section,&secMap)
+	var secMap = make(map[string]interface{})
+	toml.PrimitiveDecode(section, &secMap)
 	var subs []string
 	if _, ok := secMap["subs"]; ok {
 		subsUntyped, _ := secMap["subs"].([]interface{})

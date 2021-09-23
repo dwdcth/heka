@@ -117,7 +117,7 @@ func main() {
 		fmt.Println(VERSION)
 		return
 	}
-    // 加载hekad 配置
+	// 加载hekad 配置 默认从etc读取，读不到退出
 	config, err = LoadHekadConfig(*configPath)
 	if err != nil {
 		pipeline.LogError.Println("Error reading config: ", err)
@@ -164,7 +164,7 @@ func main() {
 				exitCode = 1
 				return
 			}
-
+			//防止启动多个进程
 			process, err := os.FindProcess(pid)
 
 			// on Windows, err != nil if the process cannot be found
@@ -224,7 +224,7 @@ func main() {
 		}()
 	}
 
-    // 读取其它节点配置开始管道运行
+	// 读取其它节点配置开始管道运行，并初始化插件，失败则退出
 	// Set up and load the pipeline configuration and start the daemon.
 	pipeconf := pipeline.NewPipelineConfig(globals)
 	if err = loadFullConfig(pipeconf, configPath); err != nil {
@@ -244,7 +244,7 @@ func loadFullConfig(pipeconf *pipeline.PipelineConfig, configPath *string) (err 
 	if err != nil {
 		return fmt.Errorf("can't stat file: %s", err.Error())
 	}
-
+	//判断传入的配置，是路径还是文件，路径则加载所有toml文件
 	if fi.IsDir() {
 		files, _ := ioutil.ReadDir(*configPath)
 		for _, f := range files {
