@@ -117,7 +117,7 @@ func main() {
 		fmt.Println(VERSION)
 		return
 	}
-
+    // 加载hekad 配置
 	config, err = LoadHekadConfig(*configPath)
 	if err != nil {
 		pipeline.LogError.Println("Error reading config: ", err)
@@ -224,6 +224,7 @@ func main() {
 		}()
 	}
 
+    // 读取其它节点配置开始管道运行
 	// Set up and load the pipeline configuration and start the daemon.
 	pipeconf := pipeline.NewPipelineConfig(globals)
 	if err = loadFullConfig(pipeconf, configPath); err != nil {

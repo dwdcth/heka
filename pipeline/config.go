@@ -524,6 +524,7 @@ func (self *PipelineConfig) log(msg string) {
 	LogError.Println(msg)
 }
 
+// PluginTypeRegex 插件类型 有5种，都是在名字或者type上可以看出来的
 var PluginTypeRegex = regexp.MustCompile("(Decoder|Encoder|Filter|Input|Output|Splitter)$")
 
 func getPluginCategory(pluginType string) string {
@@ -534,10 +535,25 @@ func getPluginCategory(pluginType string) string {
 	return pluginCats[1]
 }
 
-type CommonConfig struct {
-	Typ string `toml:"type"`
+/*
+// 0.8 版本的插件配置
+type PluginGlobals struct {
+	Typ        string `toml:"type"`
+	Ticker     uint   `toml:"ticker_interval"`
+	Matcher    string `toml:"message_matcher"` // Filter and Output only.
+	Signer     string `toml:"message_signer"`  // Filter and Output only.
+	Retries    RetryOptions
+	Encoder    string // Output only.
+	UseFraming *bool  `toml:"use_framing"` // Output only.
+	CanExit    *bool  `toml:"can_exit"`
 }
+*/
 
+// CommonConfig 插件通用配置 插件要起作用，需要 RegisterPlugin，注册方式 https://hekad.readthedocs.io/en/v0.10.0/developing/plugin.html
+type CommonConfig struct {
+	Typ string `toml:"type"` //插件类型，参见上面的 PluginTypeRegex 如果 type为空， 则 这个节的名字就是 type
+}
+// 通用输入插件
 type CommonInputConfig struct {
 	Ticker             uint `toml:"ticker_interval"`
 	Decoder            string
@@ -609,17 +625,18 @@ func (self *PipelineConfig) RegisterDefault(name string) error {
 // PipelineConfig should be already initialized via the Init function before
 // this method is called. PreloadFromConfigFile is not reentrant, so it should
 // only be called serially, not from multiple concurrent goroutines.
+// 加载插件配置文件
 func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 	var (
 		configFile ConfigFile
 		err        error
 	)
-
+    // 更新配置文件中，自定义变量（环境变量）
 	contents, err := ReplaceEnvsFile(filename)
 	if err != nil {
 		return err
 	}
-
+    // TOML 解析成 configFile
 	if _, err = toml.Decode(contents, &configFile); err != nil {
 		return fmt.Errorf("Error decoding config file: %s", err)
 	}
@@ -631,7 +648,7 @@ func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 	if self.defaultConfigs == nil {
 		self.defaultConfigs = makeDefaultConfigs()
 	}
-
+    // 加载插件配置文件， 这里面做了插件注册的检查
 	// Load all the plugin makers and file them by category.
 	for name, conf := range configFile {
 		if name == HEKA_DAEMON {
@@ -647,7 +664,7 @@ func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 			self.errcnt++
 			continue
 		}
-
+        // 获取插件的类型，不同类型特殊处理
 		if maker.Type() == "MultiDecoder" {
 			// Special case MultiDecoders so we can make sure they get
 			// registered *after* all possible subdecoders.

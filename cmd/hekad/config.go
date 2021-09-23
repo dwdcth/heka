@@ -49,13 +49,14 @@ type HekadConfig struct {
 	LogFlags              int    `toml:"log_flags"`
 	FullBufferMaxRetries  uint32 `toml:"full_buffer_max_retries"`
 }
-
+// 配置文件和环境变量处理
 func LoadHekadConfig(configPath string) (config *HekadConfig, err error) {
 	hostname, err := os.Hostname()
 	if err != nil {
 		return
 	}
 
+    // hekad 节点默认配置
 	config = &HekadConfig{Maxprocs: 1,
 		PoolSize:              100,
 		ChanSize:              30,
@@ -88,7 +89,7 @@ func LoadHekadConfig(configPath string) (config *HekadConfig, err error) {
 	if fi.IsDir() {
 		files, _ := ioutil.ReadDir(configPath)
 		for _, f := range files {
-			fName := f.Name()
+			fName := f.Name() // 遍历所有toml文件依次加载
 			if !strings.HasSuffix(fName, ".toml") {
 				// Skip non *.toml files in a config dir.
 				continue
@@ -103,6 +104,7 @@ func LoadHekadConfig(configPath string) (config *HekadConfig, err error) {
 			}
 		}
 	} else {
+        // 把配置文件中通过%ENV[]设置的替换为环境变量里的真实值
 		contents, err := pipeline.ReplaceEnvsFile(configPath)
 		if err != nil {
 			return nil, err
