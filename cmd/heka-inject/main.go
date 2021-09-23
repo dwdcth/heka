@@ -19,7 +19,7 @@ Heka Inject client.
 Inject client used to test heka message flow and plugin operations.
 Allows for injecting messages with specified message variable into Heka
 pipeline.
-
+允许快速测试插件。Inject 需要具有 Protobufs 编码器可用性的 TcpInput
 */
 package main
 
@@ -28,9 +28,9 @@ import (
 	"os"
 	"time"
 
+	"github.com/pborman/uuid"
 	"heka/client"
 	"heka/message"
-	"github.com/pborman/uuid"
 )
 
 type HekaClient struct {

@@ -16,7 +16,7 @@
 /*
 
 Client package to talk to heka from Go.
-
+heka 客户端sdk
 */
 package client
 

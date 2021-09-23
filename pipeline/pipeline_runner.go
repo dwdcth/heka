@@ -28,8 +28,8 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"heka/message"
 	notify "github.com/rafrombrc/go-notify"
+	"heka/message"
 )
 
 const (
@@ -52,9 +52,9 @@ type GlobalConfigStruct struct {
 	stopping              bool
 	stoppingMutex         sync.RWMutex
 	shutdownOnce          sync.Once
-	BaseDir               string
-	ShareDir              string
-	SampleDenominator     int
+	BaseDir               string //运行目录
+	ShareDir              string //插件配置和lua扩展目录
+	SampleDenominator     int  //采样分数
 	sigChan               chan os.Signal
 	Hostname              string
 	abortChan             chan struct{}

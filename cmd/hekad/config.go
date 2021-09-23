@@ -46,7 +46,7 @@ type HekadConfig struct {
 	PidFile               string `toml:"pid_file"`
 	Hostname              string
 	MaxMessageSize        uint32 `toml:"max_message_size"`
-	LogFlags              int    `toml:"log_flags"`
+	LogFlags              int    `toml:"log_flags"`  // log格式
 	FullBufferMaxRetries  uint32 `toml:"full_buffer_max_retries"`
 }
 // 配置文件和环境变量处理
