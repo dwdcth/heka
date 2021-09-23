@@ -205,7 +205,7 @@ func main() {
 			exitCode = 1
 			return
 		}
-
+		// 开启cpu监控
 		pprof.StartCPUProfile(profFile)
 		defer func() {
 			pprof.StopCPUProfile()

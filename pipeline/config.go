@@ -738,7 +738,7 @@ func (self *PipelineConfig) LoadConfig() error {
 			if category == "Encoder" {
 				continue
 			}
-			runner, err := maker.MakeRunner("") // todo 这里才是运行插件
+			runner, err := maker.MakeRunner("") // todo xx 这里才是运行插件 找对应的插件运行
 			if err != nil {
 				// Might be a duplicate error.
 				seen := false
