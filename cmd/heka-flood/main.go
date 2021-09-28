@@ -21,7 +21,7 @@ Heka Flood client.
 Flooding client used to test heka message through-put and tolerances.
 Can be run with several configuration options to indicate how the messages
 should be sent and encoded.
-
+负载测试工具
 */
 package main
 
@@ -42,10 +42,10 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/gogo/protobuf/proto"
+	"github.com/pborman/uuid"
 	"heka/client"
 	"heka/message"
 	"heka/plugins/tcp"
-	"github.com/pborman/uuid"
 )
 
 type FloodTest struct {

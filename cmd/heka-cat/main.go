@@ -17,6 +17,7 @@
 
 A command-line utility for counting, viewing, filtering, and extracting Heka
 protobuf logs.
+用于计数、查看、过滤和提取 Heka protobuf 日志的命令行实用程序。
 
 */
 package main

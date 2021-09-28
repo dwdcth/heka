@@ -121,7 +121,7 @@ func (m *pluginMaker) OrigPrepCommonTypedConfig() (interface{}, error) {
 	case "Input":
 		b := true
 		commonInput := CommonInputConfig{
-			Retries: getDefaultRetryOptions(),
+			Retries:           getDefaultRetryOptions(),
 			LogDecodeFailures: &b,
 		}
 		err = toml.PrimitiveDecode(m.tomlSection, &commonInput)
@@ -272,7 +272,7 @@ func (m *pluginMaker) Make() (Plugin, interface{}, error) {
 	if err != nil {
 		return nil, nil, err
 	}
-
+	// todo xx 初始化插件
 	plugin := m.makePlugin()
 	if err = plugin.Init(config); err != nil {
 		return nil, nil, fmt.Errorf("Initialization failed for '%s': %s", m.name, err)
@@ -368,6 +368,7 @@ func (m *pluginMaker) makeInputRunner(name string, config interface{}, input Inp
 // configured plugin instance. If name is provided, then the Runner will be
 // given the specified name; if name is an empty string, the plugin name will
 // be used.
+// todo xx 这里才是runner初始化的地方
 func (m *pluginMaker) MakeRunner(name string) (PluginRunner, error) {
 	if m.category == "Encoder" {
 		return nil, fmt.Errorf("%s plugins don't support PluginRunners", m.category)
