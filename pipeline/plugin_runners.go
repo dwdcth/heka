@@ -834,6 +834,7 @@ func (kind foRunnerKind) String() string {
 
 // This one struct provides the implementation of both FilterRunner and
 // OutputRunner interfaces.
+// fileter 和 output 接口的实现
 type foRunner struct {
 	processMessageCount int64
 	dropMessageCount    int64
@@ -998,7 +999,7 @@ func (foRunner *foRunner) waitForBackPressure() error {
 	}
 	return nil
 }
-
+// todo 启动插件
 func (foRunner *foRunner) Start(h PluginHelper, wg *sync.WaitGroup) (err error) {
 	foRunner.h = h
 	foRunner.pConfig = h.PipelineConfig()

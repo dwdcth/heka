@@ -23,13 +23,13 @@ import (
 
 	. "heka/pipeline"
 )
-
+// 输出插件，使用go自身的 log 输出到 stdout
 var logOut = log.New(os.Stdout, "", log.LstdFlags)
 
 // Output plugin that writes message contents out using Go standard library's
 // `log` package.
 type LogOutput struct {
-	or OutputRunner
+	or OutputRunner // or => output runner 实际实现是plugins.foRunner ，没有用到
 }
 
 func (self *LogOutput) Init(config interface{}) (err error) {
@@ -42,7 +42,7 @@ func (self *LogOutput) Run(or OutputRunner, h PluginHelper) (err error) {
 		return errors.New("Encoder required.")
 	}
 
-	inChan := or.InChan()
+	inChan := or.InChan() // inChan 是管道流包
 	var (
 		pack     *PipelinePack
 		outBytes []byte

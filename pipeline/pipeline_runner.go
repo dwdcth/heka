@@ -17,19 +17,19 @@
 package pipeline
 
 import (
-	"errors"
-	"os"
-	"os/signal"
-	"path/filepath"
-	"strings"
-	"sync"
-	"sync/atomic"
-	"syscall"
-	"time"
+    "errors"
+    "os"
+    "os/signal"
+    "path/filepath"
+    "strings"
+    "sync"
+    "sync/atomic"
+    "syscall"
+    "time"
 
-	"github.com/gogo/protobuf/proto"
-	"heka/message"
-	notify "github.com/rafrombrc/go-notify"
+    "github.com/gogo/protobuf/proto"
+    notify "github.com/rafrombrc/go-notify"
+    "heka/message"
 )
 
 const (
@@ -148,6 +148,7 @@ func (g *GlobalConfigStruct) PrependShareDir(path string) string {
 
 // Main Heka pipeline data structure containing raw message data, a Message
 // object, and other Heka related message metadata.
+// 管道流包，包括原始数据和heka 元数据
 type PipelinePack struct {
 	// Used for storage of binary blob data that has yet to be decoded into a
 	// Message object.

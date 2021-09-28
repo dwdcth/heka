@@ -21,7 +21,7 @@ import (
 	"os"
 	"strings"
 )
-
+// 检测写入权限
 func CheckWritePermission(fp string) (err error) {
 	var file *os.File
 	if file, err = ioutil.TempFile(fp, ".hekad.perm_check"); err == nil {

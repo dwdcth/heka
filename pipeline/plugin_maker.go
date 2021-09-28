@@ -181,6 +181,7 @@ func (m *pluginMaker) SetCategory(category string) {
 
 // makePlugin instantiates a plugin instance, provides name and pConfig to the
 // plugin if necessary, and returns the plugin.
+// 初始化插件
 func (m *pluginMaker) makePlugin() Plugin {
 	plugin := m.constructor().(Plugin)
 	if wantsPConfig, ok := plugin.(WantsPipelineConfig); ok {

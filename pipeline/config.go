@@ -658,7 +658,7 @@ func (self *PipelineConfig) PreloadFromConfigFile(filename string) error {
 			self.defaultConfigs[name] = true
 		}
 		LogInfo.Printf("Pre-loading: [%s]\n", name)
-		maker, err := NewPluginMaker(name, self, conf)
+		maker, err := NewPluginMaker(name, self, conf) // todo 构造插件
 		if err != nil {
 			self.log(err.Error())
 			self.errcnt++
