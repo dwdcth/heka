@@ -1051,7 +1051,7 @@ func (foRunner *foRunner) Start(h PluginHelper, wg *sync.WaitGroup) (err error) 
 			foRunner.pConfig.router.oMatcherMap[foRunner.name] = foRunner.matcher
 		}
 	}
-
+    // todo 新旧插件判断
 	newStyleAPI := false
 	switch foRunner.kind {
 	case foFilter:

@@ -15,8 +15,8 @@
 package plugins
 
 import (
-	"heka/pipeline"
 	"github.com/cactus/gostrftime"
+	"heka/pipeline"
 	"strings"
 	"time"
 )

@@ -154,6 +154,7 @@ func main() {
 		exitCode = 1
 		return
 	}
+	// todo 改为多个小函数
 	if config.PidFile != "" {
 		contents, err := ioutil.ReadFile(config.PidFile)
 		if err == nil {
