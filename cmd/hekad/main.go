@@ -33,6 +33,7 @@ import (
 	"syscall"
 	"time"
 
+	_ "heka/examples"
 	"heka/message"
 	"heka/pipeline"
 	_ "heka/plugins"
