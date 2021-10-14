@@ -20,12 +20,12 @@
 package plugins
 
 import (
+	gs "github.com/rafrombrc/gospec/src/gospec"
 	. "heka/pipeline"
 	_ "heka/plugins/payload"
 	_ "heka/plugins/statsd"
 	ts "heka/plugins/testsupport"
 	_ "heka/plugins/udp"
-	gs "github.com/rafrombrc/gospec/src/gospec"
 	"os"
 	"path/filepath"
 	"runtime"
