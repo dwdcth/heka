@@ -6,16 +6,24 @@ decoder = "ProtobufDecoder"
 [HostFilter]
 message_matcher = "Type != 'heka.counter-output'"
 hosts = ["127.0.0.1", "grail"]
-output = "UdpOutput"
+output = "LogOutput"
 
 [CounterFilter]
 message_matcher = "Type != 'heka.counter-output'"
 ticker_interval = 1
 
 [UdpOutput]
+message_matcher = "Type == 'heka.counter-output' || Type == 'heka.all-report'"
 address = "127.0.0.1:6676"
+encoder = "PayloadEncoder"
 
 [LogOutput]
 message_matcher = "Type == 'heka.counter-output' || Type == 'heka.all-report'"
 payload_only = true
+encoder = "PayloadEncoder"
+
+
+[PayloadEncoder]
+append_newlines = false
+
 

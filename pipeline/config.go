@@ -29,6 +29,7 @@ import (
 	"regexp"
 	"sync"
 	"time"
+	"unsafe"
 
 	"github.com/BurntSushi/toml"
 	"github.com/pborman/uuid"
@@ -48,6 +49,16 @@ var (
 	LogError             = log.New(os.Stderr, "", log.LstdFlags)
 )
 
+func GetUnexportedField(field reflect.Value) interface{} {
+	return reflect.NewAt(field.Type(), unsafe.Pointer(field.UnsafeAddr())).Elem().Interface()
+}
+
+func SetUnexportedField(field reflect.Value, value interface{}) {
+	reflect.NewAt(field.Type(), unsafe.Pointer(field.UnsafeAddr())).
+		Elem().
+		Set(reflect.ValueOf(value))
+}
+
 // Adds a plugin to the set of usable Heka plugins that can be referenced from
 // a Heka config file.
 func RegisterPlugin(name string, factory func() interface{}) {
@@ -57,6 +68,20 @@ func RegisterPlugin(name string, factory func() interface{}) {
 // Generic plugin configuration type that will be used for plugins that don't
 // provide the `HasConfigStruct` interface.
 type PluginConfig map[string]toml.Primitive
+
+func (c *PluginConfig) GetData() map[string]interface{} {
+	data := make(map[string]interface{})
+	for s, primitive := range *c {
+
+		rs := reflect.ValueOf(primitive)
+		rs2 := reflect.New(rs.Type()).Elem()
+		rs2.Set(rs)
+		rf := rs2.Field(0)
+
+		data[s] = GetUnexportedField(rf)
+	}
+	return data
+}
 
 // API made available to all plugins providing Heka-wide utility functions.
 type PluginHelper interface {

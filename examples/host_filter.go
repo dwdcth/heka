@@ -34,7 +34,8 @@ func (f *HostFilter) Init(config interface{}) error {
 		outputConf interface{}
 		ok         bool
 	)
-	conf := config.(pipeline.PluginConfig)
+	pluginConfig := config.(pipeline.PluginConfig)
+	conf := pluginConfig.GetData()
 	if hostsConf, ok = conf["hosts"]; !ok {
 		return errors.New("No 'hosts' setting specified.")
 	}
