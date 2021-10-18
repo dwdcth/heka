@@ -442,6 +442,7 @@ func (ls *LogstreamSet) GetLogstreamNames() []string {
 // Run a scan for logstreams, creating new logstreams as needed
 // Returns a list of new logstream names if logstreams were created
 // as a result
+// todo xx 初始化log io
 func (ls *LogstreamSet) ScanForLogstreams() (result []string, errors *MultipleError) {
 	var (
 		logstream *Logstream

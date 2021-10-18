@@ -401,7 +401,7 @@ func (ir *iRunner) Unregister(pConfig *PipelineConfig) error {
 	}
 	return nil
 }
-
+// todo xx 关联消息
 func (ir *iRunner) Inject(pack *PipelinePack) error {
 	if err := pack.EncodeMsgBytes(); err != nil {
 		err = fmt.Errorf("encoding message: %s", err.Error())
@@ -1648,7 +1648,7 @@ func (foRunner *foRunner) Ticker() (ticker <-chan time.Time) {
 func (foRunner *foRunner) RetainPack(pack *PipelinePack) {
 	foRunner.retainPack = pack
 }
-
+// todo xx logoutput inchan 主要
 func (foRunner *foRunner) InChan() (inChan chan *PipelinePack) {
 	if foRunner.retainPack != nil {
 		retainChan := make(chan *PipelinePack)

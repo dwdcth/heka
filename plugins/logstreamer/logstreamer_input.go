@@ -217,7 +217,7 @@ func (li *LogstreamerInput) Run(ir p.InputRunner, h p.PluginHelper) (err error) 
 	}
 
 	ok = true
-	rescan := time.Tick(li.rescanInterval)
+	rescan := time.Tick(li.rescanInterval) //todo xx 这个是干啥的，为啥要rescan
 	// Our main rescan loop that handles shutting down
 	for ok {
 		select {

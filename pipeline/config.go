@@ -610,7 +610,7 @@ type CommonSplitterConfig struct {
 	IncompleteFinal *bool `toml:"deliver_incomplete_final"`
 }
 
-// Default configurations.
+// Default configurations. 默认配置和加载的插件
 func makeDefaultConfigs() map[string]bool {
 	return map[string]bool{
 		"ProtobufDecoder":         false,
