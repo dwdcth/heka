@@ -21,8 +21,8 @@ import (
 	"io"
 	"time"
 
-	"heka/message"
 	"github.com/pborman/uuid"
+	"heka/message"
 )
 
 type WantsSplitterRunner interface {
@@ -283,7 +283,7 @@ func (sr *sRunner) DeliverRecord(record []byte, del Deliverer) {
 	if del == nil {
 		sr.ir.Deliver(pack)
 	} else {
-		del.Deliver(pack)
+		del.Deliver(pack) //todo xx 发送消息
 	}
 }
 

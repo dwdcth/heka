@@ -401,6 +401,7 @@ func (ir *iRunner) Unregister(pConfig *PipelineConfig) error {
 	}
 	return nil
 }
+
 // todo xx 关联消息
 func (ir *iRunner) Inject(pack *PipelinePack) error {
 	if err := pack.EncodeMsgBytes(); err != nil {
@@ -409,7 +410,7 @@ func (ir *iRunner) Inject(pack *PipelinePack) error {
 		pack.recycle()
 		return err
 	}
-	return ir.pConfig.router.Inject(pack)
+	return ir.pConfig.router.Inject(pack) // todo xx 发送消息 路由
 }
 
 func (ir *iRunner) LogError(err error) {
@@ -920,6 +921,7 @@ func NewFORunner(name string, plugin Plugin, config CommonFOConfig,
 			runner.backChan <- pack
 		}
 	} else {
+		//todo xx 这里关联了mathChan 和 inChan
 		runner.inChan = make(chan *PipelinePack, chanSize)
 		matchChan = runner.inChan
 		runner.capacity = chanSize
@@ -999,6 +1001,7 @@ func (foRunner *foRunner) waitForBackPressure() error {
 	}
 	return nil
 }
+
 // todo 启动插件
 func (foRunner *foRunner) Start(h PluginHelper, wg *sync.WaitGroup) (err error) {
 	foRunner.h = h
@@ -1051,7 +1054,7 @@ func (foRunner *foRunner) Start(h PluginHelper, wg *sync.WaitGroup) (err error) 
 			foRunner.pConfig.router.oMatcherMap[foRunner.name] = foRunner.matcher
 		}
 	}
-    // todo 新旧插件判断
+	// todo 新旧插件判断
 	newStyleAPI := false
 	switch foRunner.kind {
 	case foFilter:
@@ -1648,6 +1651,7 @@ func (foRunner *foRunner) Ticker() (ticker <-chan time.Time) {
 func (foRunner *foRunner) RetainPack(pack *PipelinePack) {
 	foRunner.retainPack = pack
 }
+
 // todo xx logoutput inchan 主要
 func (foRunner *foRunner) InChan() (inChan chan *PipelinePack) {
 	if foRunner.retainPack != nil {

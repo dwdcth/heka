@@ -179,7 +179,7 @@ func (self *messageRouter) Start() {
 				if !ok {
 					break
 				}
-				pack.diagnostics.Reset()
+				pack.diagnostics.Reset() //todo xx 监控
 				atomic.AddInt64(&self.processMessageCount, 1)
 				for _, matcher = range self.fMatchers {
 					if matcher != nil {
@@ -229,6 +229,7 @@ type MatchRunner struct {
 
 // Creates and returns a new MatchRunner if possible, or a relevant error if
 // not.
+// todo xx 匹配处理消息
 func NewMatchRunner(filter, signer string, runner PluginRunner, chanSize int,
 	matchChan chan *PipelinePack) (matcher *MatchRunner, err error) {
 
