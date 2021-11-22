@@ -68,8 +68,8 @@ func LoadHekadConfig(configPath string) (config *HekadConfig, err error) {
 		MaxMsgProcessDuration: 100000,
 		MaxMsgTimerInject:     10,
 		MaxPackIdle:           "2m",
-		BaseDir:               filepath.FromSlash("/var/cache/hekad"),
-		ShareDir:              filepath.FromSlash("/usr/share/heka"),
+		BaseDir:               filepath.FromSlash("."), // /var/cache/hekad
+		ShareDir:              filepath.FromSlash("."), // /usr/share/heka
 		SampleDenominator:     1000,
 		PidFile:               "",
 		Hostname:              hostname,

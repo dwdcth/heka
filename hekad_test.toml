@@ -8,3 +8,6 @@ append_newlines = false
 [LogOutput]
 message_matcher = "TRUE"
 encoder = "PayloadEncoder"
+
+[DashboardOutput]
+ticker_interval = 30

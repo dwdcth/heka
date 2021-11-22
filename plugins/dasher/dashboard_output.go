@@ -16,14 +16,17 @@
 package dasher
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
-	"io"
+	"io/ioutil"
+	"mime"
 	"net/http"
 	"os"
 	"path"
 	"path/filepath"
 	"regexp"
+	"strings"
 	"sync"
 	"time"
 
@@ -31,6 +34,9 @@ import (
 	. "heka/pipeline"
 	httpPlugin "heka/plugins/http"
 )
+
+//go:embed ui/*
+var ui embed.FS
 
 type DashboardOutputConfig struct {
 	// IP address of the Dashboard HTTP interface (defaults to all interfaces on
@@ -58,7 +64,7 @@ type DashboardOutputConfig struct {
 func (self *DashboardOutput) ConfigStruct() interface{} {
 	return &DashboardOutputConfig{
 		Address:          ":4352",
-		StaticDirectory:  "dasher",
+		StaticDirectory:  "ui",
 		WorkingDirectory: "dashboard",
 		TickerInterval:   uint(5),
 		MessageMatcher:   "Type == 'heka.all-report' || Type == 'heka.sandbox-terminated' || Type == 'heka.sandbox-output'",
@@ -74,6 +80,40 @@ type DashboardOutput struct {
 	handler          http.Handler
 	pConfig          *PipelineConfig
 	starterFunc      func(output *DashboardOutput) error
+}
+
+func (self *DashboardOutput) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	filePath := r.URL.Path
+	if filePath == "/" {
+		filePath = "/index.html"
+	}
+	if mime := mime.TypeByExtension(path.Ext(filePath)); mime != "" {
+		w.Header().Set("Content-Type", mime)
+	}
+	w.Header().Set("Cache-Control", "max-age=3600")
+	if strings.Index(filePath, "/data") != -1 {
+		filePath = strings.ReplaceAll(filePath, "/data","/")
+		if f, err := ioutil.ReadFile(self.dataDirectory + filePath); err == nil {
+			if _, err = w.Write(f); err != nil {
+				w.WriteHeader(505)
+			}
+		}
+	}
+	if self.staticDirectory == "ui" {
+		if bytes, err := ui.ReadFile("ui" + filePath); err == nil {
+			if _, err = w.Write(bytes); err != nil {
+				w.WriteHeader(505)
+			}
+		}
+	} else if f, err := ioutil.ReadFile(self.staticDirectory + filePath); err == nil {
+		if _, err = w.Write(f); err != nil {
+			w.WriteHeader(505)
+		}
+	} else {
+		w.Header().Set("Location", "/")
+		w.WriteHeader(302)
+	}
+
 }
 
 // Heka will call this before calling any other methods to give us access to
@@ -108,51 +148,55 @@ func (self *DashboardOutput) Init(config interface{}) (err error) {
 
 	// Copy the static content from the static dir to the working directory.
 	// This function does the copying, will be passed in to filepath.Walk.
-	copier := func(path string, info os.FileInfo, err error) (e error) {
-		if err != nil {
-			return err
-		}
+	//copier := func(path string, info os.FileInfo, err error) (e error) {
+	//	if err != nil {
+	//		return err
+	//	}
+	//
+	//	var (
+	//		relPath, destPath string
+	//		inFile, outFile   *os.File
+	//		fi                os.FileInfo
+	//	)
+	//	if relPath, e = filepath.Rel(self.staticDirectory, path); e != nil {
+	//		return
+	//	}
+	//	destPath = filepath.Join(self.workingDirectory, relPath)
+	//
+	//	if fi, e = os.Stat(path); e != nil {
+	//		return fmt.Errorf("can't stat '%s': %s", path, e)
+	//	}
+	//
+	//	// Is this a directory?
+	//	if fi.IsDir() {
+	//		// Yes, create it in the destination spot.
+	//		if e = os.MkdirAll(destPath, 0700); e != nil {
+	//			return fmt.Errorf("can't create folder '%s': %s", destPath, e)
+	//		}
+	//	} else {
+	//		// Not a directory, create the new file.
+	//		if outFile, e = os.Create(destPath); e != nil {
+	//			return fmt.Errorf("can't create destination file '%s': %s", destPath, e)
+	//		}
+	//		if inFile, e = os.Open(path); e != nil {
+	//			return fmt.Errorf("can't open '%s': %s", path, e)
+	//		}
+	//		if _, e = io.Copy(outFile, inFile); e != nil {
+	//			return fmt.Errorf("can't copy to '%s': %s", destPath, e)
+	//		}
+	//	}
+	//	return
+	//}
 
-		var (
-			relPath, destPath string
-			inFile, outFile   *os.File
-			fi                os.FileInfo
-		)
-		if relPath, e = filepath.Rel(self.staticDirectory, path); e != nil {
-			return
-		}
-		destPath = filepath.Join(self.workingDirectory, relPath)
-
-		if fi, e = os.Stat(path); e != nil {
-			return fmt.Errorf("can't stat '%s': %s", path, e)
-		}
-
-		// Is this a directory?
-		if fi.IsDir() {
-			// Yes, create it in the destination spot.
-			if e = os.MkdirAll(destPath, 0700); e != nil {
-				return fmt.Errorf("can't create folder '%s': %s", destPath, e)
-			}
-		} else {
-			// Not a directory, create the new file.
-			if outFile, e = os.Create(destPath); e != nil {
-				return fmt.Errorf("can't create destination file '%s': %s", destPath, e)
-			}
-			if inFile, e = os.Open(path); e != nil {
-				return fmt.Errorf("can't open '%s': %s", path, e)
-			}
-			if _, e = io.Copy(outFile, inFile); e != nil {
-				return fmt.Errorf("can't copy to '%s': %s", destPath, e)
-			}
-		}
-		return
-	}
+	//if self.handler == nil {
+	//	if err = filepath.Walk(self.staticDirectory, copier); err != nil {
+	//		return fmt.Errorf("Error copying static dashboard files: %s", err)
+	//	}
+	//	self.handler = http.FileServer(http.Dir(self.workingDirectory))
+	//}
 
 	if self.handler == nil {
-		if err = filepath.Walk(self.staticDirectory, copier); err != nil {
-			return fmt.Errorf("Error copying static dashboard files: %s", err)
-		}
-		self.handler = http.FileServer(http.Dir(self.workingDirectory))
+		self.handler = self
 	}
 	self.server = &http.Server{
 		Addr:         conf.Address,
